@@ -1,0 +1,22 @@
+[
+  {
+    "pid": 2,
+    "title": "Zapatillas 2",
+    "description": "Zapatillas deportivas",
+    "code": "ZAP001",
+    "price": 9990,
+    "status": true,
+    "stock": 10,
+    "category": "calzado"
+  },
+  {
+    "pid": 3,
+    "title": "Zapatillas 3",
+    "description": "Zapatillas deportivas",
+    "code": "ZAP001",
+    "price": 9990,
+    "status": true,
+    "stock": 10,
+    "category": "calzado"
+  }
+]
