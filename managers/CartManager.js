@@ -17,7 +17,7 @@ const readCarts = async () => {
 //* Función para escribir el array de carritos en el archivo JSON
 const writeCarts = async (carts) => {
     try {
-        await fs.writeFile(filePath, JSON.stringify(carts, null, 2));
+        await fs.writeFile(filePath, JSON.stringify(carts));
     } catch (error) {
         console.error("Error writing carts:", error);
     }
@@ -28,8 +28,10 @@ const writeCarts = async (carts) => {
 const createCart = async () => {
     try {
         const carts = await readCarts();
+        const lastCart = carts[carts.length - 1];
+        const cid = lastCart ? lastCart.cid + 1 : 1;
         const newCart = {
-            cid: (carts.length + 1),
+            cid,
             products: []
         };
         carts.push(newCart);
@@ -39,6 +41,7 @@ const createCart = async () => {
         console.error("Error creating cart:", error);
     }
 };
+
 
 //* Busca y devuelve un carrito existente por su ID (cid)
 //* Si no lo encuentra, devuelve error
@@ -73,7 +76,7 @@ const addProductToCart = async (cid, pid) => {
         console.error("Error adding product to cart:", error);
     }
 };
-
+//* Importacion de las funciones para ser reutilizadas en las rutas
 module.exports = {
     createCart,
     getCartById,

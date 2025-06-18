@@ -1,15 +1,1 @@
-[
-  {
-    "cid": 1,
-    "products": [
-      {
-        "product": 3,
-        "quantity": 1
-      }
-    ]
-  },
-  {
-    "cid": 2,
-    "products": []
-  }
-]
+[{"cid":1,"products":[{"product":3,"quantity":1},{"pid":"1","quantity":1}]},{"cid":2,"products":[]},{"cid":3,"products":[{"pid":"4","quantity":1}]},{"cid":4,"products":[]}]

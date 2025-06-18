@@ -28,6 +28,7 @@ const writeProducts = async (products) => {
 const getAll = async (limit) => {
     try {
         const products = await readProducts();
+        //* Si el párametro limit existe devolvemos solo esa cantidad del array products y sino si totalidad
         return limit ? products.slice(0, limit) : products;
     } catch (error) {
         console.error("Error getting all products:", error);
@@ -49,7 +50,10 @@ const getById = async (pid) => {
 //* Se le asigna un ID nuevo y unico al sumarle uno al último ID siempre
 const add = async (data) => {
     try {
+        //* Leo el archivo json con la función readProducts
         const products = await readProducts();
+        //* Parseamos el ID del producto para asegurar que sea un número
+        //* Si el array esta vacio se le asigna el ID 1, sino se le suma 1 al último ID existente
         const pid = products.length ? parseInt(products[products.length - 1].pid) + 1 : 1;
         const newProduct = { pid, ...data };
         products.push(newProduct);
@@ -67,7 +71,8 @@ const update = async (pid, data) => {
         const products = await readProducts();
         const index = products.findIndex(item => item.pid == pid);
         if (index === -1) return null;
-        products[index] = { pid: parseInt(pid), ...data };
+        //* Parseamos nuevamente el ID para asegurar que sea un número
+        products[index] = { ...products[index], ...data, pid: parseInt(pid) };
         await writeProducts(products);
         return products[index];
     } catch (error) {
