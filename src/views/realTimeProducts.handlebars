@@ -1,0 +1,33 @@
+<h1 class="text-center my-4">Administrador</h1>
+
+<div class="container">
+    <!-- Formulario -->
+    <form id="productForm" class="mb-4">
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-2">
+                <input type="text" id="nombre" class="form-control" placeholder="Nombre" required>
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="descripcion" class="form-control" placeholder="Descripción" required>
+            </div>
+            <div class="col-md-2">
+                <input type="number" id="precio" class="form-control" placeholder="Precio" required>
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="imagen" class="form-control" placeholder="URL Imagen" required>
+            </div>
+            <div class="col-md-1">
+                <button class="btn btn-success" type="submit">+</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Contenedor de productos -->
+    <div class="row" id="productList">
+        <!-- Acá se renderizan en tiempo real -->
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
