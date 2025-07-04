@@ -13,25 +13,25 @@ form.addEventListener("submit", (e) => {
 
     const nuevoProducto = { nombre, descripcion, precio, imagen };
     socket.emit("nuevoProducto", nuevoProducto);
-
+    //* Siempre resteamos luego para evitar duplicado
     form.reset();
 });
 
-// Renderizar productos actualizados
+//* Renderizar productos actualizados
 socket.on("productosActualizados", (productos) => {
     const contenedor = document.getElementById("productList");
-    contenedor.innerHTML = ""; // Limpiar antes de renderizar
+    contenedor.innerHTML = ""; //* Limpiar antes de renderizar
 
-    productos.forEach(prod => {
+    productos.forEach(item => {
         const card = `
         <div class="card m-2" style="width: 18rem;">
-            <img src="${prod.imagen}" class="card-img-top" alt="${prod.nombre}">
+            <img src="${item.imagen}" class="card-img-top" alt="${item.nombre}">
             <div class="card-body">
-                <h5 class="card-title">${prod.nombre}</h5>
-                <p class="card-text">${prod.descripcion}</p>
-                <p class="card-text fw-bold">$${prod.precio}</p>
+                <h5 class="card-title">${item.nombre}</h5>
+                <p class="card-text">${item.descripcion}</p>
+                <p class="card-text fw-bold">$${item.precio}</p>
                 <button class="btn btn-primary mb-2">Pedir precio</button>
-                <button class="btn btn-danger btn-sm" onclick="deleteProduct('${prod.id}')">Eliminar</button>
+                <button class="btn btn-danger btn-sm" onclick="deleteProduct('${item.id}')">Eliminar</button>
             </div>
         </div>
         `;
@@ -39,7 +39,7 @@ socket.on("productosActualizados", (productos) => {
     });
 });
 
-// Eliminar producto por socket
+//* Eliminar producto por socket
 function deleteProduct(id) {
     socket.emit("eliminarProducto", id);
 }
